@@ -1,0 +1,9 @@
+<launch>
+  <group ns="load_kp2hv1100_hw__">
+    <include file="$(find kuka_kp2_support)/launch/load_kp2hv1100_hw.launch"/>
+  </group>
+
+  <group ns="test_kp2hv1100_hw__">
+    <include file="$(find kuka_kp2_support)/launch/test_kp2hv1100_hw.launch"/>
+  </group>
+</launch>

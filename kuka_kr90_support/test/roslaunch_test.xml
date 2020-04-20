@@ -1,0 +1,9 @@
+<launch>
+  <group ns="load_kr90r2900_extraha__">
+    <include file="$(find kuka_kr120_support)/launch/load_kr90r2900_extraha.launch"/>
+  </group>
+
+  <group ns="test_kr90r2900_extraha__">
+    <include file="$(find kuka_kr120_support)/launch/test_kr90r2900_extraha.launch"/>
+  </group>
+</launch>

@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:property name="DEG2RAD" value="0.017453292519943295"/>
+  <xacro:macro name="kuka_kp2hv1100_hw" params="prefix">
+    <!-- LINKS -->
+    <!-- base link -->
+    <link name="${prefix}base_link">
+      <!--inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="2"/>
+        <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+      </inertial-->
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://kuka_kp2_support/meshes/kp2hv1100HW/visual/base_link.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://kuka_kp2_support/meshes/kp2hv1100HW/collision/base_link.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <!-- link 1 (A1) -->
+    <link name="${prefix}link_1">
+      <inertial>
+        <origin xyz="0 -0.77 -0.865" rpy="0 0 0"/>
+        <mass value="2"/>
+        <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+      </inertial>
+      <visual>
+        <origin xyz="0 -0.770 -0.865" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://kuka_kp2_support/meshes/kp2hv1100HW/visual/link_1.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 -0.77 -0.865" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://kuka_kp2_support/meshes/kp2hv1100HW/collision/link_1.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <!-- link 2 -->
+    <link name="${prefix}link_2">
+      <inertial>
+        <origin xyz="0 -0.770 -1.085" rpy="0 0 0"/>
+        <mass value="2"/>
+        <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+      </inertial>
+      <visual>
+        <origin xyz="0 -0.770 -1.085" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://kuka_kp2_support/meshes/kp2hv1100HW/visual/link_2.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 -0.770 -1.085" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://kuka_kp2_support/meshes/kp2hv1100HW/collision/link_2.stl" />
+        </geometry>
+      </collision>
+    </link>
+    
+    <link name="${prefix}tool0"/>
+    <!-- END LINKS -->
+
+    <!-- JOINTS -->
+    <!-- joint 1 (A1) -->
+    <joint name="${prefix}joint_a1" type="revolute">
+      <origin xyz="0 0.770 0.865" rpy="0 0 0"/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}link_1"/>
+      <axis xyz="1 0 0"/>
+      <limit effort="0" lower="${-DEG2RAD * 185}" upper="${DEG2RAD * 185}" velocity="${DEG2RAD * 105}"/>
+    </joint>
+    <!-- joint 2 (A2) -->
+    <joint name="${prefix}joint_a2" type="revolute">
+      <origin xyz="0 0 0.22" rpy="0 0 0"/><!--For an aligned coordinate system for the plate use rpy="0 0 1.2653638"-->
+      <parent link="${prefix}link_1"/>
+      <child link="${prefix}link_2"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="0" lower="${-DEG2RAD * 140}" upper="${-DEG2RAD * 5}" velocity="${DEG2RAD * 101}"/>
+    </joint>
+    
+    <!-- tool frame - fixed frame -->
+    <joint name="${prefix}joint_a2-tool0" type="fixed">
+      <parent link="${prefix}link_2"/>
+      <child link="${prefix}tool0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+    <!-- END JOINTS -->
+	
+    <!-- ROS base_link to KUKA $ROBROOT coordinate system transform -->
+    <link name="${prefix}base" />
+    <joint name="${prefix}base_link-base" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}base"/>
+    </joint>
+
+  </xacro:macro>
+</robot>
+
+
