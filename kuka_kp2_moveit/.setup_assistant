@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: kuka_kp2_support
+    relative_path: urdf/kp2hv1100_hw.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/kuka_kp2hv1100_hw.srdf
+  CONFIG:
+    author_name: Fernando Coutinho
+    author_email: fernando_coutinho_@hotmail.com
+    generated_timestamp: 1587150647

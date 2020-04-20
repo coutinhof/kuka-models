@@ -1,0 +1,11 @@
+controller_list:
+  - name: fake_kp2_positioner_controller
+    joints:
+      - kp2_joint_a1
+      - kp2_joint_a2
+  - name: fake_base_plate_controller
+    joints:
+      []
+initial:  # Define initial robot poses.
+  - group: kp2_positioner
+    pose: initial_pose
