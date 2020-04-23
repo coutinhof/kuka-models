@@ -156,11 +156,18 @@
     <!-- This frame corresponds to the $FLANGE coordinate system in KUKA KRC controllers. -->
     <link name="${prefix}tool0">
       <visual>
-        <origin xyz="0.0216 0 -0.4853" rpy="${DEG2RAD * 180} 0 0"/>
+        <!-- old torch origin xyz="0.0216 0 -0.4853" rpy="${DEG2RAD * 180} 0 0"/-->  
+        <origin xyz="0.001 0 -0.4727" rpy="${DEG2RAD * 180} 0 0"/>
         <geometry>
-          <mesh filename="package://kuka_kr90_support/meshes/kr90r2900extraHA/visual/tocha_cmt_centro.dae" />
+          <mesh filename="package://kuka_kr90_support/meshes/kr90r2900extraHA/visual/tocha.dae" />
         </geometry>
       </visual>
+      <collision>
+        <origin xyz="0.001 0 -0.4727" rpy="${DEG2RAD * 180} 0 0"/>
+        <geometry>
+          <mesh filename="package://kuka_kr90_support/meshes/kr90r2900extraHA/collision/tocha.stl" />
+        </geometry>
+      </collision>
     </link>
     <!-- END LINKS -->
 
