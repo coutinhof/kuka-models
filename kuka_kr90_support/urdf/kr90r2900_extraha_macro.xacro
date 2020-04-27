@@ -162,12 +162,12 @@
           <mesh filename="package://kuka_kr90_support/meshes/kr90r2900extraHA/visual/tocha.dae" />
         </geometry>
       </visual>
-      <collision>
+      <!--collision>
         <origin xyz="0.001 0 -0.4727" rpy="${DEG2RAD * 180} 0 0"/>
         <geometry>
           <mesh filename="package://kuka_kr90_support/meshes/kr90r2900extraHA/collision/tocha.stl" />
         </geometry>
-      </collision>
+      </collision-->
     </link>
     <!-- END LINKS -->
 
@@ -224,7 +224,7 @@
     <joint name="${prefix}joint_a6-tool0" type="fixed">
       <parent link="${prefix}link_6"/>
       <child link="${prefix}tool0"/>
-      <origin xyz="0.4853 0 0.0216" rpy="0 ${DEG2RAD * 90} 0"/>
+      <origin xyz="0.4727 0 0.001" rpy="0 ${DEG2RAD * 90} 0"/>
       <axis xyz="0 0 -1"/>
     </joint>
     <!-- END JOINTS -->
